@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <div>
+        <p id="botPicked"></p>
+        <h1 id="result"></h1>
+    </div>
+    <div class="moves">
+        <button onclick="pickMove('rock')">Rock</button>
+        <button onclick="pickMove('paper')">Paper</button>
+        <button onclick="pickMove('scissors')">Scissors</button>
+    </div>
+    <script>
+        const moves = ['rock', 'paper', 'scissors'];
+        const result = document.getElementById('result');
+        const botPicked = document.getElementById('botPicked');
+        const randomMove = () => {
+            return moves[Math.floor(Math.random() * moves.length)];
+        };
+
+        function pickMove(userMove) {
+            const botMove = randomMove();
+
+            botPicked.innerText = `Bot picked ${botMove} & you picked ${userMove}`;
+
+            if (userMove === botMove) {
+                result.innerText = "It's a draw";
+            } else if (userMove === 'rock' && botMove === 'paper') {
+                result.innerText = 'You Win!';
+            } else if (botMove === 'rock' && userMove === 'paper') {
+                result.innerText = 'Bot Wins!';
+            }  else if (userMove === 'paper' && botMove === 'scissors') {
+                result.innerText = 'Bot Wins!';
+            } else if (userMove === 'scissors' && botMove === 'paper') {
+                result.innerText = 'You Win!';
+            } else if (userMove === 'rock' && botMove === 'scissors') {
+                result.innerText = 'You Win!';
+            } else if (userMove === 'scissors' && botMove === 'rock') {
+                result.innerText = 'Bot Wins!';
+            }
+        }
+    </script>
+</body>
+</html>
